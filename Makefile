@@ -4,6 +4,7 @@ LDFLAGS=
 
 target=v4l2_cam
 objs=$(patsubst %.c, %.o, $(wildcard *.c))
+install_path=/home/river/apps/bin/
 
 all:$(target)
 
@@ -13,8 +14,11 @@ $(target):$(objs)
 .c.o:
 	$(CC) -c $< $(CFLASG)
 
+install:
+	cp $(target) $(install_path) -rf
+
 .PHONY:
-	clean
+	clean install
 
 clean:
 	rm *.o $(target) -rf
